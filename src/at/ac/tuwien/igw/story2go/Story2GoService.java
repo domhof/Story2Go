@@ -18,6 +18,9 @@ public class Story2GoService extends Service implements LocationListener {
 	private LocationManager locationManager;
 	private Location currentLocation;
 
+	private boolean gpsProviderEnabled = false;
+	private boolean networkProviderEnabled = false;
+
 	private void initLocationAudio() {
 		ArrayList<LocationAudio> locations = new ArrayList<LocationAudio>();
 		Location l = new Location("testlocation");
@@ -59,13 +62,42 @@ public class Story2GoService extends Service implements LocationListener {
 	// }
 	// }
 
+	/**
+	 * Service
+	 */
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
-				0, this);
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			locationManager.requestLocationUpdates(
+					LocationManager.GPS_PROVIDER, 0, 0, this);
+			gpsProviderEnabled = true;
+			Log.d(TAG, "GPS Provider is enabled");
+		}
+		if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			locationManager.requestLocationUpdates(
+					LocationManager.NETWORK_PROVIDER, 0, 0, this);
+			networkProviderEnabled = true;
+			Log.d(TAG, "Network Provider is enabled");
+		}
 	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onDestroy() {
+		locationManager.removeUpdates(this);
+	}
+
+	/**
+	 * LocationListener
+	 */
 
 	@Override
 	public void onLocationChanged(Location location) {
@@ -83,11 +115,5 @@ public class Story2GoService extends Service implements LocationListener {
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
-	}
-
-	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
