@@ -122,6 +122,9 @@ public class Story2GoService extends Service implements LocationListener {
 		this.currentLocation = location;
 		Log.d(TAG, "Current location: " + location);
 
+		Story2GoListener story2GoListener = SharedData.getStory2GoListener();
+		story2GoListener.updateLocation(location);
+
 		playAudioIfInRangeOfNextLocation();
 	}
 

@@ -15,7 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements SensorEventListener {
+public class MainActivity extends Activity implements SensorEventListener,
+		Story2GoListener {
 	public static final String TAG = MainActivity.class.getSimpleName();
 
 	private SensorManager sensorManager;
@@ -36,6 +37,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		SharedData.setStory2GoListener(this);
 
 		// Set full screen view
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -143,5 +146,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 		// Lazy bearing calculation but might be adequite for smaller distances
 		compassView.updateDirection(direction);
 		compassView.updateBearing(direction - bearingToNext);
+	}
+
+	@Override
+	public void updateLocation(Location location) {
+		this.currentLocation = location;
 	}
 }
