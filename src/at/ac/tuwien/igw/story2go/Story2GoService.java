@@ -123,7 +123,7 @@ public class Story2GoService extends Service implements LocationListener {
 		Log.d(TAG, "Current location: " + location);
 
 		Story2GoListener story2GoListener = SharedData.getStory2GoListener();
-		story2GoListener.updateLocation(location);
+		story2GoListener.onLocationUpdated(location);
 
 		playAudioIfInRangeOfNextLocation();
 	}
@@ -148,5 +148,13 @@ public class Story2GoService extends Service implements LocationListener {
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
+	}
+
+	public boolean isGpsProviderEnabled() {
+		return gpsProviderEnabled;
+	}
+
+	public boolean isNetworkProviderEnabled() {
+		return networkProviderEnabled;
 	}
 }

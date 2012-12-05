@@ -28,4 +28,8 @@ public class SharedData {
 		SharedData.story2GoListener = story2GoListener;
 	}
 
+	public static ArrayList<LocationAudio> getLocations() {
+		return locations;
+	}
+
 }

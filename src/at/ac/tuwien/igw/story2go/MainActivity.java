@@ -10,10 +10,14 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
+import at.ac.tuwien.igw.story2go.config.ConfigLoader;
+import at.ac.tuwien.igw.story2go.config.Story2GoConfigData;
 
 public class MainActivity extends Activity implements SensorEventListener,
 		Story2GoListener {
@@ -25,6 +29,9 @@ public class MainActivity extends Activity implements SensorEventListener,
 	private Location nextTriggerLocation;
 	private Location currentLocation;
 
+	/**
+	 * UI elements
+	 */
 	private TextView textViewDistance;
 	private TextView textViewBearing;
 	private TextView textViewCompass;
@@ -34,10 +41,29 @@ public class MainActivity extends Activity implements SensorEventListener,
 	 * Activity events
 	 */
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		// Prepare shared data
+		Story2GoConfigData config = ConfigLoader.loadConfig();
+		if (config != null) {
+			SharedData.setLocations(config.getTriggers());
+			if (SharedData.getLocations() == null
+					|| SharedData.getLocations().size() == 0) {
+				Toast.makeText(
+						this,
+						"Warning: there are no triggers set in the config file!",
+						Toast.LENGTH_LONG).show();
+				Log.w(TAG, "there are no triggers set in the config file");
+			}
+			Log.d(TAG, "Triggers loaded: " + SharedData.getLocations());
+		} else {
+			Toast.makeText(this, "Error: couldn't find the config file!",
+					Toast.LENGTH_LONG).show();
+			Log.e(TAG, "couldn't find the config file");
+		}
 		SharedData.setStory2GoListener(this);
 
 		// Set full screen view
@@ -143,13 +169,13 @@ public class MainActivity extends Activity implements SensorEventListener,
 		textViewCompass.setText("Compass: " + direction);
 		textViewCompassAccuracy.setText("Compass accuracy: " + accuracy);
 
-		// Lazy bearing calculation but might be adequite for smaller distances
+		// Lazy bearing calculation but might be adequate for smaller distances
 		compassView.updateDirection(direction);
 		compassView.updateBearing(direction - bearingToNext);
 	}
 
 	@Override
-	public void updateLocation(Location location) {
+	public void onLocationUpdated(Location location) {
 		this.currentLocation = location;
 	}
 }
