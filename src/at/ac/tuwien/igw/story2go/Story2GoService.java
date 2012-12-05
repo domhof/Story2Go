@@ -1,7 +1,6 @@
 package at.ac.tuwien.igw.story2go;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import android.app.Service;
 import android.content.Context;
@@ -29,23 +28,23 @@ public class Story2GoService extends Service implements LocationListener {
 	private boolean gpsProviderEnabled = false;
 	private boolean networkProviderEnabled = false;
 
-	private void initLocationAudio() {
-		// Mocked data
-		ArrayList<LocationAudio> locations = new ArrayList<LocationAudio>();
-		Location l1 = new Location("testlocation1");
-		l1.setLatitude(20.0);
-		l1.setLongitude(30.0);
-		LocationAudio locationAudio1 = new LocationAudio(l1, "beep-1.mp3");
-		locations.add(locationAudio1);
-
-		Location l2 = new Location("testlocation2");
-		l2.setLatitude(30.0);
-		l2.setLongitude(20.0);
-		LocationAudio locationAudio2 = new LocationAudio(l2, "beep-1.mp3");
-		locations.add(locationAudio2);
-
-		SharedData.setLocations(locations);
-	}
+	// private void initLocationAudio() {
+	// // Mocked data
+	// ArrayList<LocationAudio> locations = new ArrayList<LocationAudio>();
+	// Location l1 = new Location("testlocation1");
+	// l1.setLatitude(20.0);
+	// l1.setLongitude(30.0);
+	// LocationAudio locationAudio1 = new LocationAudio(l1, "beep-1.mp3");
+	// locations.add(locationAudio1);
+	//
+	// Location l2 = new Location("testlocation2");
+	// l2.setLatitude(30.0);
+	// l2.setLongitude(20.0);
+	// LocationAudio locationAudio2 = new LocationAudio(l2, "beep-1.mp3");
+	// locations.add(locationAudio2);
+	//
+	// SharedData.setLocations(locations);
+	// }
 
 	private void initLocationManager() {
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -97,7 +96,7 @@ public class Story2GoService extends Service implements LocationListener {
 		super.onCreate();
 
 		initLocationManager();
-		initLocationAudio();
+		// initLocationAudio();
 		initMediaPlayer();
 	}
 
@@ -135,6 +134,9 @@ public class Story2GoService extends Service implements LocationListener {
 				&& this.currentLocation.distanceTo(nextLocationAudio.location) < LOCATION_TOLERANCE) {
 			playAudio(nextLocationAudio.audioFile);
 			SharedData.nextLocationPassed();
+			Story2GoListener story2GoListener = SharedData
+					.getStory2GoListener();
+			story2GoListener.onTriggerPassed();
 		}
 	}
 

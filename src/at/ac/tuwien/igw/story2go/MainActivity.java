@@ -92,23 +92,39 @@ public class MainActivity extends Activity implements SensorEventListener,
 		// .getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
 		// Initialize demo locations
+		nextTriggerLocation = SharedData.getNextLocation().getLocation();
 
-		// Belvedere
-		nextTriggerLocation = new Location(LocationManager.GPS_PROVIDER);
-		nextTriggerLocation.setLongitude(16.38094672945924);
-		nextTriggerLocation.setLatitude(48.19139554219337);
-		nextTriggerLocation.setAltitude(0);
+		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		currentLocation = locationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-		// LocationManager locationManager = (LocationManager)
-		// getSystemService(Context.LOCATION_SERVICE);
-		// currentLocation = locationManager
-		// .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		// Try network provider if GPS position is not available
+		if (currentLocation == null) {
+			currentLocation = locationManager
+					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
 
-		// Fasangasse 49
-		currentLocation = new Location(LocationManager.GPS_PROVIDER);
-		currentLocation.setLongitude(16.38612753202644);
-		currentLocation.setLatitude(48.1899134428467);
-		currentLocation.setAltitude(0);
+		// All went wrong, assume U6 Tscherttegasse
+		if (currentLocation == null) {
+			currentLocation = new Location(LocationManager.GPS_PROVIDER);
+			currentLocation.setLatitude(48.16571757417265d);
+			currentLocation.setLongitude(16.32829959289493d);
+			currentLocation.setAltitude(0);
+
+		}
+
+		Log.d(TAG, "=============== STORY INITIALIZED ===============");
+		Log.d(TAG,
+				"Current Location: "
+						+ (currentLocation == null ? "null" : (currentLocation
+								.getLatitude() + ";" + currentLocation
+								.getLongitude())));
+		Log.d(TAG,
+				"Next Trigger:     "
+						+ (nextTriggerLocation == null ? "null"
+								: (nextTriggerLocation.getLatitude() + ";" + nextTriggerLocation
+										.getLongitude())));
+		Log.d(TAG, "=================================================");
 	}
 
 	@Override
@@ -142,40 +158,37 @@ public class MainActivity extends Activity implements SensorEventListener,
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		// see:
-		// http://stackoverflow.com/questions/5479753/using-orientation-sensor-to-point-towards-a-specific-location
-		// float azimuth = event.values[0];
-		// azimuth = azimuth * 180 / (float) Math.PI;
-		// GeomagneticField geoField = new GeomagneticField(Double.valueOf(
-		// currentLocation.getLatitude()).floatValue(), Double.valueOf(
-		// currentLocation.getLongitude()).floatValue(), Double.valueOf(
-		// currentLocation.getAltitude()).floatValue(),
-		// System.currentTimeMillis());
-		// azimuth += geoField.getDeclination();
-		// float bearing = currentLocation.bearingTo(nextTriggerLocation);
-		// compassView.updateDirection(azimuth - bearing);
+		if (currentLocation != null && nextTriggerLocation != null) {
+			float direction = event.values[0];
+			float bearingToNext = currentLocation
+					.bearingTo(nextTriggerLocation);
+			float distanceToNext = currentLocation
+					.distanceTo(nextTriggerLocation);
+			String accuracy = event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_HIGH ? "High"
+					: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM ? "Medium"
+							: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW ? "Low"
+									: event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ? "Unreliable"
+											: "Unknown";
 
-		float direction = event.values[0];
-		float bearingToNext = currentLocation.bearingTo(nextTriggerLocation);
-		float distanceToNext = currentLocation.distanceTo(nextTriggerLocation);
-		String accuracy = event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_HIGH ? "High"
-				: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM ? "Medium"
-						: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW ? "Low"
-								: event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ? "Unreliable"
-										: "Unknown";
+			textViewBearing.setText("Bearing: " + bearingToNext);
+			textViewDistance.setText("Distance: " + distanceToNext);
+			textViewCompass.setText("Compass: " + direction);
+			textViewCompassAccuracy.setText("Compass accuracy: " + accuracy);
 
-		textViewBearing.setText("Bearing: " + bearingToNext);
-		textViewDistance.setText("Distance: " + distanceToNext);
-		textViewCompass.setText("Compass: " + direction);
-		textViewCompassAccuracy.setText("Compass accuracy: " + accuracy);
-
-		// Lazy bearing calculation but might be adequate for smaller distances
-		compassView.updateDirection(direction);
-		compassView.updateBearing(direction - bearingToNext);
+			// Lazy bearing calculation but might be adequate for smaller
+			// distances
+			compassView.updateDirection(direction);
+			compassView.updateBearing(direction - bearingToNext);
+		}
 	}
 
 	@Override
 	public void onLocationUpdated(Location location) {
 		this.currentLocation = location;
+	}
+
+	@Override
+	public void onTriggerPassed() {
+		this.nextTriggerLocation = SharedData.getNextLocation().location;
 	}
 }

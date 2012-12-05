@@ -39,7 +39,7 @@ public class ConfigParser extends GenericXmlParser<Story2GoConfigData> {
 			} catch (NumberFormatException e) {
 				longitude = 0;
 			}
-			trigger.getLocation().setLatitude(longitude);
+			trigger.getLocation().setLongitude(longitude);
 		} else if (mParser.getName().equals(FILENAME_TAG)) {
 			trigger.setAudioFile(getNextText());
 		}
