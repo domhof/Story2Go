@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class ConfigLoader {
 	private static final String TAG = ConfigLoader.class.getSimpleName();
-	private static final String CONFIG_FILE_NAME = "config.xml";
+	private static final String CONFIG_FILE_NAME = "story2go_config.xml";
 
 	public static Story2GoConfigData loadConfig() {
 		String externalStoragePath = Environment
