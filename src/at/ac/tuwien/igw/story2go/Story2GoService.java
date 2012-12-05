@@ -17,6 +17,8 @@ import android.os.PowerManager;
 import android.util.Log;
 
 public class Story2GoService extends Service implements LocationListener {
+	private static final int LOCATION_TOLERANCE = 30;
+
 	public static final String TAG = Story2GoService.class.getSimpleName();
 
 	private LocationManager locationManager;
@@ -127,7 +129,7 @@ public class Story2GoService extends Service implements LocationListener {
 		LocationAudio nextLocationAudio = SharedData.getNextLocation();
 
 		if (nextLocationAudio != null
-				&& this.currentLocation.distanceTo(nextLocationAudio.location) < 30) {
+				&& this.currentLocation.distanceTo(nextLocationAudio.location) < LOCATION_TOLERANCE) {
 			playAudio(nextLocationAudio.audioFile);
 			SharedData.nextLocationPassed();
 		}
