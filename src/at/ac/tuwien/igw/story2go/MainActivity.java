@@ -189,6 +189,8 @@ public class MainActivity extends Activity implements SensorEventListener,
 
 	@Override
 	public void onTriggerPassed() {
-		this.nextTriggerLocation = SharedData.getNextLocation().location;
+		LocationAudio nextLocation = SharedData.getNextLocation();
+		if (nextLocation != null)
+			this.nextTriggerLocation = nextLocation.location;
 	}
 }

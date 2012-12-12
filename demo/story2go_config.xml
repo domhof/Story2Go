@@ -4,23 +4,23 @@
 		<trigger>
 			<location>
 				<latitude>30.1000</latitude>
-				<longitude>120.1000</longitude>
+				<longitude>100.1000</longitude>
 			</location>
 			<filename>beep.mp3</filename>
 		</trigger>
 		<trigger>
 			<location>
-				<latitude>30.1001</latitude>
-				<longitude>120.1002</longitude>
+				<latitude>60.1001</latitude>
+				<longitude>100.1002</longitude>
 			</location>
-			<filename>beep.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
-				<latitude>30.1002</latitude>
-				<longitude>120.1004</longitude>
+				<latitude>90.1002</latitude>
+				<longitude>100.1004</longitude>
 			</location>
-			<filename>beep.mp3</filename>
+			<filename>bear.wav</filename>
 		</trigger>
 	</triggers>
 </config>

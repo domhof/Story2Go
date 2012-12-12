@@ -36,5 +36,4 @@ public class LocationAudio {
 		return "LocationAudio [location=" + location.getLatitude() + ";"
 				+ location.getLongitude() + ", audioFile=" + audioFile + "]";
 	}
-
 }
