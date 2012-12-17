@@ -4,7 +4,7 @@ Story2Go
 Config
 ------
 
-The device/emulator must contain a config filed called `story2go_config.xml` in `/mnt/sdcard` to load a story.
+The device/emulator must contain a config file called `story2go_config.xml` in `/mnt/sdcard` to load a story.
 
 There's a `story2go_config.xml` config file in the `demo` folder.
 
