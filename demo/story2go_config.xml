@@ -8,84 +8,84 @@
 				<latitude>48.165432</latitude>
 				<longitude>16.328213</longitude>
 			</location>
-			<filename>01.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.165695</latitude>
 				<longitude>16.327587</longitude>
 			</location>
-			<filename>02.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.165791</latitude>
 				<longitude>16.326427</longitude>
 			</location>
-			<filename>03.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.165062</latitude>
 				<longitude>16.324957</longitude>
 			</location>
-			<filename>04.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.164593</latitude>
 				<longitude>16.324017</longitude>
 			</location>
-			<filename>05.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.164059</latitude>
 				<longitude>16.323153</longitude>
 			</location>
-			<filename>06.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.163105</latitude>
 				<longitude>16.322367</longitude>
 			</location>
-			<filename>07.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.162704</latitude>
 				<longitude>16.321877</longitude>
 			</location>
-			<filename>08.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.162483</latitude>
 				<longitude>16.320620</longitude>
 			</location>
-			<filename>09.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.162220</latitude>
 				<longitude>16.320400</longitude>
 			</location>
-			<filename>10.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.161205</latitude>
 				<longitude>16.319986</longitude>
 			</location>
-			<filename>11.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.161556</latitude>
 				<longitude>16.317999</longitude>
 			</location>
-			<filename>12.mp3</filename>
+			<filename>bird.wav</filename>
 		</trigger>
 	</triggers>
 </story2go>

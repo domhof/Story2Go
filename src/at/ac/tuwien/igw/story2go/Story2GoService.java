@@ -22,7 +22,7 @@ public class Story2GoService extends Service implements LocationListener {
 
 	public static final String TAG = Story2GoService.class.getSimpleName();
 
-	private static final Double MAX_DEVIATION_FROM_PATH = 50.0;
+	private static final Double MAX_DEVIATION_FROM_PATH = 20.0;
 
 	private LocationManager locationManager;
 	private Location currentLocation;
@@ -42,6 +42,7 @@ public class Story2GoService extends Service implements LocationListener {
 			locationManager.requestLocationUpdates(
 					LocationManager.NETWORK_PROVIDER, 0, 0, this);
 			networkProviderEnabled = true;
+
 			Log.d(TAG, "Network Provider is enabled");
 		}
 	}
@@ -133,7 +134,7 @@ public class Story2GoService extends Service implements LocationListener {
 		LocationAudio nextLocation = SharedData.getNextLocation();
 		if (lastLocation == null || nextLocation == null) {
 			Log.d(TAG, "lastLocation or nextLocation is null.");
-			return true;
+			return false;
 		}
 
 		Double c1 = this.currentLocation.getLatitude();
@@ -157,7 +158,19 @@ public class Story2GoService extends Service implements LocationListener {
 				/ (Math.pow(ab1, 2) + Math.pow(ab2, 2));
 		Double p1 = a1 + t * ab1;
 		Double p2 = a2 + t * ab2;
-		return Math.sqrt(Math.pow(p1 - c1, 2) + Math.pow(p2 - c2, 2));
+
+		Location cLocation = new Location("asdf");
+		cLocation.setLatitude(c1);
+		cLocation.setLongitude(c2);
+
+		Location pLocation = new Location("asdf");
+		pLocation.setLatitude(p1);
+		pLocation.setLongitude(p2);
+
+		return Double.valueOf(cLocation.distanceTo(pLocation)); // Math.sqrt(Math.pow(p1
+		// - c1,
+		// 2)
+		// + Math.pow(p2 - c2, 2));
 	}
 
 	private void playAudioIfInRangeOfNextLocation() {
