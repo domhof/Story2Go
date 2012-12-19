@@ -18,8 +18,20 @@ public class SharedData {
 		return locations.get(nextLocationIndex);
 	}
 
+	public static LocationAudio getLastLocation() {
+		if (nextLocationIndex == 0)
+			return null;
+		else
+			return locations.get(nextLocationIndex - 1);
+	}
+
 	public static void nextLocationPassed() {
 		nextLocationIndex++;
+	}
+
+	public static void setNextLocationToLocationBefore() {
+		if (nextLocationIndex >= 1)
+			nextLocationIndex--;
 	}
 
 	public static void setLocations(ArrayList<LocationAudio> locations) {
