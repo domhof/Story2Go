@@ -51,6 +51,8 @@ public class CompassView extends View {
 	private static final String[] compassLabels = { "N", "NE", "E", "SE", "S",
 			"SW", "W", "NW" };
 
+	Paint p = new Paint();
+
 	public CompassView(Context context) {
 		super(context);
 		init();
@@ -74,6 +76,8 @@ public class CompassView extends View {
 		// paint for pointer
 		paintPointer.setAntiAlias(true);
 		paintPointer.setColor(0xff392f2c);
+		// paintPointer.setColor(0x10000000); // weg
+		// paintPointer.setStrokeWidth(2); // weg
 		paintPointer.setShadowLayer(0.01f, -0.005f, -0.005f, 0x7f000000);
 		paintPointer.setStyle(Paint.Style.FILL);
 
@@ -130,7 +134,7 @@ public class CompassView extends View {
 		scalePaint.setStrokeWidth(0.005f);
 		scalePaint.setAntiAlias(true);
 
-		scalePaint.setTextSize(0.045f);
+		scalePaint.setTextSize(0.0045f);
 		scalePaint.setTypeface(Typeface.SANS_SERIF);
 		scalePaint.setTextAlign(Paint.Align.CENTER);
 
