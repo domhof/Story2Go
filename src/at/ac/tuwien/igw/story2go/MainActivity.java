@@ -10,10 +10,13 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import at.ac.tuwien.igw.story2go.config.ConfigLoader;
@@ -36,7 +39,9 @@ public class MainActivity extends Activity implements SensorEventListener,
 	private TextView textViewBearing;
 	private TextView textViewCompass;
 	private TextView textViewCompassAccuracy;
-
+	Button buttonPlay;
+	Button buttonPause;
+	Button buttonStop;
 	/**
 	 * Activity events
 	 */
@@ -77,6 +82,13 @@ public class MainActivity extends Activity implements SensorEventListener,
 		textViewBearing = (TextView) findViewById(R.id.textViewBearing);
 		textViewCompass = (TextView) findViewById(R.id.textViewCompass);
 		textViewCompassAccuracy = (TextView) findViewById(R.id.textViewCompassAccuracy);
+		
+		buttonPlay = (Button) findViewById(R.id.buttonPlay);
+		buttonPlay.setOnClickListener(playListener);
+		buttonPause = (Button) findViewById(R.id.buttonPause);
+		buttonPause.setOnClickListener(pauseListener);
+		buttonStop = (Button) findViewById(R.id.buttonStop);
+		buttonStop.setOnClickListener(stopListener); 
 
 		// Start service
 		Intent intent = new Intent(this, Story2GoService.class);
@@ -85,8 +97,7 @@ public class MainActivity extends Activity implements SensorEventListener,
 		// Initialize compass
 		compassView = (CompassView) findViewById(R.id.compassView);
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		orientationSensor = sensorManager
-				.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+		orientationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
 		// orientationSensor = sensorManager
 		// .getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -193,4 +204,30 @@ public class MainActivity extends Activity implements SensorEventListener,
 		if (nextLocation != null)
 			this.nextTriggerLocation = nextLocation.location;
 	}
+	
+	/**
+	 * Callbacks
+	 */
+	
+	private OnClickListener playListener = new OnClickListener() {
+		public void onClick(View arg0) {
+			if (SharedData.getLastLocation() != null)
+				SharedData.getMediaPlayer().start();
+		}
+	};
+	
+	private OnClickListener pauseListener = new OnClickListener() {
+		public void onClick(View arg0) {
+			if (SharedData.getMediaPlayer().isPlaying())
+				SharedData.getMediaPlayer().pause();
+		}
+	};
+	
+	private OnClickListener stopListener = new OnClickListener() {
+		public void onClick(View arg0) {
+			if (SharedData.getMediaPlayer().isPlaying())
+				SharedData.getMediaPlayer().stop();
+		}
+	};
+	
 }

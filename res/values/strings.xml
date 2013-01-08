@@ -3,5 +3,6 @@
 
     <string name="app_name">Story2Go</string>
     <string name="menu_settings">Settings</string>
+    <string name="stop">Stop</string>
 
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<previews>
+
+    <preview
+        name="Nexus One"
+        activity="at.ac.tuwien.igw.story2go.MainActivity"
+        config="layout-sw320dp-w320dp-h480dp-normal-long-port-notnight-hdpi-finger-keyssoft-nokeys-navhidden-trackball-720x480-v17"
+        device="Nexus One"
+        devicestate="Portrait"
+        target="Android 4.2"
+        theme="@style/AppTheme" >
+    </preview>
+
+</previews>

@@ -29,6 +29,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <Button
+        android:id="@+id/buttonPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="50sp"
+        android:height="40sp"
+        android:text="Play" />
+    
+    <Button
+        android:id="@+id/buttonPause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="90sp"
+        android:height="40sp"
+        android:text="Pause" />
+    
+    <Button
+        android:id="@+id/buttonStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="50sp"
+        android:height="40sp"
+        android:text="Stop" />
 
     <at.ac.tuwien.igw.story2go.CompassView
         android:id="@+id/compassView"
