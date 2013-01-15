@@ -14,10 +14,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" 
-        android:hardwareAccelerated="false">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="at.ac.tuwien.igw.story2go.LoginActivity"
             android:label="@string/app_name"
@@ -28,10 +28,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="StoriesListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="MainActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <service android:name=".Story2GoService" />
-        <activity android:name="StoriesListActivity"></activity>
-        <activity android:name="MainActivity"></activity>
     </application>
 
 </manifest>
