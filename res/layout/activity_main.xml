@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background_app"
     android:orientation="vertical"
     android:padding="10dp"
@@ -18,17 +18,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="2dp"
+            android:contentDescription="@string/not_set"
             android:src="@drawable/logo_200" />
 
         <Button
             android:id="@+id/buttonBack"
+            style="@style/Story2GoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="2dp"
-            android:text="Back"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="15sp" />
+            android:text="@string/back" />
     </RelativeLayout>
 
     <LinearLayout
@@ -68,36 +68,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonPlay"
+            style="@style/Story2GoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:height="40sp"
-            android:text="Play"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:width="50sp" />
+            android:contentDescription="@string/not_set"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_media_play" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonPause"
+            style="@style/Story2GoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:height="40sp"
-            android:text="Pause"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:width="90sp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:contentDescription="@string/not_set"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_media_pause" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonStop"
+            style="@style/Story2GoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:height="40sp"
-            android:text="Stop"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:width="50sp" />
+            android:contentDescription="@string/not_set"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_media_rew" />
     </LinearLayout>
 
 </LinearLayout>

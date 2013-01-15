@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import at.ac.tuwien.igw.story2go.config.ConfigLoader;
@@ -40,9 +41,9 @@ public class MainActivity extends Activity implements SensorEventListener,
 	private TextView textViewCompass;
 	private TextView textViewCompassAccuracy;
 	Button buttonBack;
-	Button buttonPlay;
-	Button buttonPause;
-	Button buttonStop;
+	ImageButton buttonPlay;
+	ImageButton buttonPause;
+	ImageButton buttonStop;
 
 	/**
 	 * Activity events
@@ -87,11 +88,11 @@ public class MainActivity extends Activity implements SensorEventListener,
 
 		buttonBack = (Button) findViewById(R.id.buttonBack);
 		buttonBack.setOnClickListener(backListener);
-		buttonPlay = (Button) findViewById(R.id.buttonPlay);
+		buttonPlay = (ImageButton) findViewById(R.id.buttonPlay);
 		buttonPlay.setOnClickListener(playListener);
-		buttonPause = (Button) findViewById(R.id.buttonPause);
+		buttonPause = (ImageButton) findViewById(R.id.buttonPause);
 		buttonPause.setOnClickListener(pauseListener);
-		buttonStop = (Button) findViewById(R.id.buttonStop);
+		buttonStop = (ImageButton) findViewById(R.id.buttonStop);
 		buttonStop.setOnClickListener(stopListener);
 
 		// Start service
