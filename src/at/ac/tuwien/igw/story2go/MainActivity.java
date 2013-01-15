@@ -186,9 +186,9 @@ public class MainActivity extends Activity implements SensorEventListener,
 									: event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ? "Unreliable"
 											: "Unknown";
 
-			textViewBearing.setText("Bearing: " + bearingToNext);
+			// textViewBearing.setText("Bearing: " + bearingToNext);
 			textViewDistance.setText("Distance: " + distanceToNext);
-			textViewCompass.setText("Compass: " + direction);
+			// textViewCompass.setText("Compass: " + direction);
 			textViewCompassAccuracy.setText("Compass accuracy: " + accuracy);
 
 			// Lazy bearing calculation but might be adequate for smaller
