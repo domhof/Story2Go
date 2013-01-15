@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import at.ac.tuwien.igw.story2go.model.Story;
 
 public class StoriesListActivity extends Activity {
@@ -46,6 +47,10 @@ public class StoriesListActivity extends Activity {
 		myAdapter = new StoriesListItemAdapter();
 		l.setAdapter(myAdapter);
 		l.setOnItemClickListener(myAdapter);
+
+		TextView greeting = (TextView) findViewById(R.id.greeting);
+		greeting.setText("Hello " + SharedData.getUsername()
+				+ "! Choose a story!");
 	}
 
 	@Override
