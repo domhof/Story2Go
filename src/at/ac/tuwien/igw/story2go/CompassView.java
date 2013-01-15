@@ -48,8 +48,9 @@ public class CompassView extends View {
 	// scale configuration
 	private static final int totalNicks = 8;
 	private static final float degreesPerNick = 360.0f / totalNicks;
-	private static final String[] compassLabels = { "N", "NE", "E", "SE", "S",
-			"SW", "W", "NW" };
+	// private static final String[] compassLabels = { "N", "NE", "E", "SE",
+	// "S",
+	// "SW", "W", "NW" };
 
 	Paint p = new Paint();
 
@@ -232,8 +233,8 @@ public class CompassView extends View {
 
 			canvas.drawLine(0.5f, y1, 0.5f, y2, scalePaint);
 
-			canvas.drawText(compassLabels[i % compassLabels.length], 0.5f,
-					y2 - 0.015f, scalePaint);
+			// canvas.drawText(compassLabels[i % compassLabels.length], 0.5f,
+			// y2 - 0.015f, scalePaint);
 
 			canvas.rotate(degreesPerNick, 0.5f, 0.5f);
 		}
