@@ -30,7 +30,7 @@
         </activity>
 
         <service android:name=".Story2GoService" />
-        <!-- <activity android:name="StoriesListActivity"></activity> -->
+        <activity android:name="MainActivity"></activity>
     </application>
 
 </manifest>

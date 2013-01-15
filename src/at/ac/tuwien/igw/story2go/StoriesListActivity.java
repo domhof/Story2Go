@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,8 @@ public class StoriesListActivity extends Activity {
 
 	private void initDatensaetze() {
 		stories = new ArrayList<Story>();
-		stories.add(new Story(
-				"Story1",
-				"Beschreibung asdfasdfasdfasdasasdfasdfasdfasdasasdfasdfasdfasdasasdfasdfasdfasdas"));
+		stories.add(new Story("Story1", "asdf", R.drawable.story_entry, 190));
+		stories.add(new Story("Story1", "asdf", R.drawable.story2go_other, 1400));
 	}
 
 	private StoriesListItemAdapter myAdapter;
@@ -84,16 +84,20 @@ public class StoriesListActivity extends Activity {
 		}
 
 		private void bindView(LinearLayout view, int position) {
-			Story datensatz = getItem(position);
+			Story story = getItem(position);
 			view.setId((int) getItemId(position));
-			ImageView nummerTextView = (ImageView) view.findViewById(R.id.icon);
-			nummerTextView.setImageResource(R.drawable.story_entry);
+			ImageView imageView = (ImageView) view.findViewById(R.id.icon);
+			imageView.setImageResource(story.getImage());
+			imageView.getLayoutParams().height = story.getImageHeight();
 		}
 
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			// Meldung ausgeben oder Intent bauen und Activity starten
 			Story gewaehlterDatensatz = stories.get(position);
+			Intent intent = new Intent(StoriesListActivity.this,
+					MainActivity.class);
+			startActivity(intent);
 		}
 	}
 }
