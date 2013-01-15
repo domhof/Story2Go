@@ -27,7 +27,7 @@ public class StoriesListActivity extends Activity {
 	private void initDatensaetze() {
 		stories = new ArrayList<Story>();
 		stories.add(new Story("Story1", "asdf", R.drawable.story_entry, 190));
-		stories.add(new Story("Story1", "asdf", R.drawable.story2go_other, 1400));
+		stories.add(new Story("Story1", "asdf", R.drawable.story2go_other, 1260));
 	}
 
 	private StoriesListItemAdapter myAdapter;
@@ -49,8 +49,7 @@ public class StoriesListActivity extends Activity {
 		l.setOnItemClickListener(myAdapter);
 
 		TextView greeting = (TextView) findViewById(R.id.greeting);
-		greeting.setText("Hello " + SharedData.getUsername()
-				+ "! Choose a story!");
+		greeting.setText("Hello " + SharedData.getUsername());
 	}
 
 	@Override
@@ -98,6 +97,8 @@ public class StoriesListActivity extends Activity {
 
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
+			if (position > 0)
+				return;
 			Story story = stories.get(position);
 			Intent intent = new Intent(StoriesListActivity.this,
 					MainActivity.class);
