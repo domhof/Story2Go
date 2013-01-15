@@ -8,6 +8,8 @@ public class SharedData {
 	private static ArrayList<LocationAudio> locations;
 	private static int nextLocationIndex = 0;
 
+	private static String username = "";
+
 	private static Story2GoListener story2GoListener;
 
 	private static MediaPlayer mediaPlayer;
@@ -56,6 +58,14 @@ public class SharedData {
 
 	public static void setMediaPlayer(MediaPlayer mediaPlayer) {
 		SharedData.mediaPlayer = mediaPlayer;
+	}
+
+	public static String getUsername() {
+		return username;
+	}
+
+	public static void setUsername(String username) {
+		SharedData.username = username;
 	}
 
 }

@@ -93,8 +93,7 @@ public class StoriesListActivity extends Activity {
 
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			// Meldung ausgeben oder Intent bauen und Activity starten
-			Story gewaehlterDatensatz = stories.get(position);
+			Story story = stories.get(position);
 			Intent intent = new Intent(StoriesListActivity.this,
 					MainActivity.class);
 			startActivity(intent);
