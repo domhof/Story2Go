@@ -10,13 +10,13 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.Button;
 import android.util.Log;
 import android.view.Menu;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import at.ac.tuwien.igw.story2go.config.ConfigLoader;
@@ -43,6 +43,7 @@ public class MainActivity extends Activity implements SensorEventListener,
 	Button buttonPlay;
 	Button buttonPause;
 	Button buttonStop;
+
 	/**
 	 * Activity events
 	 */
@@ -56,19 +57,25 @@ public class MainActivity extends Activity implements SensorEventListener,
 		Story2GoConfigData config = ConfigLoader.loadConfig();
 		if (config != null) {
 			SharedData.setLocations(config.getTriggers());
-			if (SharedData.getLocations() == null || SharedData.getLocations().size() == 0) {
-				Toast.makeText(this, "Warning: there are no triggers set in the config file!", Toast.LENGTH_LONG).show();
+			if (SharedData.getLocations() == null
+					|| SharedData.getLocations().size() == 0) {
+				Toast.makeText(
+						this,
+						"Warning: there are no triggers set in the config file!",
+						Toast.LENGTH_LONG).show();
 				Log.w(TAG, "there are no triggers set in the config file");
 			}
 			Log.d(TAG, "Triggers loaded: " + SharedData.getLocations());
 		} else {
-			Toast.makeText(this, "Error: couldn't find the config file!", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Error: couldn't find the config file!",
+					Toast.LENGTH_LONG).show();
 			Log.e(TAG, "couldn't find the config file");
 		}
 		SharedData.setStory2GoListener(this);
 
 		// Set full screen view
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 
@@ -77,7 +84,7 @@ public class MainActivity extends Activity implements SensorEventListener,
 		textViewBearing = (TextView) findViewById(R.id.textViewBearing);
 		textViewCompass = (TextView) findViewById(R.id.textViewCompass);
 		textViewCompassAccuracy = (TextView) findViewById(R.id.textViewCompassAccuracy);
-		
+
 		buttonBack = (Button) findViewById(R.id.buttonBack);
 		buttonBack.setOnClickListener(backListener);
 		buttonPlay = (Button) findViewById(R.id.buttonPlay);
@@ -85,7 +92,7 @@ public class MainActivity extends Activity implements SensorEventListener,
 		buttonPause = (Button) findViewById(R.id.buttonPause);
 		buttonPause.setOnClickListener(pauseListener);
 		buttonStop = (Button) findViewById(R.id.buttonStop);
-		buttonStop.setOnClickListener(stopListener); 
+		buttonStop.setOnClickListener(stopListener);
 
 		// Start service
 		Intent intent = new Intent(this, Story2GoService.class);
@@ -94,7 +101,8 @@ public class MainActivity extends Activity implements SensorEventListener,
 		// Initialize compass
 		compassView = (CompassView) findViewById(R.id.compassView);
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		orientationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+		orientationSensor = sensorManager
+				.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
 		// orientationSensor = sensorManager
 		// .getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -103,7 +111,8 @@ public class MainActivity extends Activity implements SensorEventListener,
 		nextTriggerLocation = SharedData.getNextLocation().getLocation();
 
 		LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		currentLocation = locationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 		// Try network provider if GPS position is not available
 		if (currentLocation == null) {
@@ -121,10 +130,16 @@ public class MainActivity extends Activity implements SensorEventListener,
 		}
 
 		Log.d(TAG, "=============== STORY INITIALIZED ===============");
-		Log.d(TAG, "Current Location: "
-				+ (currentLocation == null ? "null" : (currentLocation.getLatitude() + ";" + currentLocation.getLongitude())));
-		Log.d(TAG, "Next Trigger:     " + (nextTriggerLocation == null ? "null"
-				: (nextTriggerLocation.getLatitude() + ";" + nextTriggerLocation.getLongitude())));
+		Log.d(TAG,
+				"Current Location: "
+						+ (currentLocation == null ? "null" : (currentLocation
+								.getLatitude() + ";" + currentLocation
+								.getLongitude())));
+		Log.d(TAG,
+				"Next Trigger:     "
+						+ (nextTriggerLocation == null ? "null"
+								: (nextTriggerLocation.getLatitude() + ";" + nextTriggerLocation
+										.getLongitude())));
 		Log.d(TAG, "=================================================");
 	}
 
@@ -138,7 +153,8 @@ public class MainActivity extends Activity implements SensorEventListener,
 	@Override
 	protected void onResume() {
 		super.onResume();
-		sensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_NORMAL);
+		sensorManager.registerListener(this, orientationSensor,
+				SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	@Override
@@ -160,13 +176,15 @@ public class MainActivity extends Activity implements SensorEventListener,
 	public void onSensorChanged(SensorEvent event) {
 		if (currentLocation != null && nextTriggerLocation != null) {
 			float direction = event.values[0];
-			float bearingToNext = currentLocation.bearingTo(nextTriggerLocation);
-			float distanceToNext = currentLocation.distanceTo(nextTriggerLocation);
+			float bearingToNext = currentLocation
+					.bearingTo(nextTriggerLocation);
+			float distanceToNext = currentLocation
+					.distanceTo(nextTriggerLocation);
 			String accuracy = event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_HIGH ? "High"
 					: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM ? "Medium"
-					: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW ? "Low"
-					: event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ? "Unreliable"
-					: "Unknown";
+							: event.accuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW ? "Low"
+									: event.accuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ? "Unreliable"
+											: "Unknown";
 
 			textViewBearing.setText("Bearing: " + bearingToNext);
 			textViewDistance.setText("Distance: " + distanceToNext);
@@ -191,36 +209,36 @@ public class MainActivity extends Activity implements SensorEventListener,
 		if (nextLocation != null)
 			this.nextTriggerLocation = nextLocation.location;
 	}
-	
+
 	/**
 	 * Callbacks
 	 */
-	
+
 	private OnClickListener backListener = new OnClickListener() {
 		public void onClick(View arg0) {
-			
+
 		}
 	};
-	
+
 	private OnClickListener playListener = new OnClickListener() {
 		public void onClick(View arg0) {
 			if (SharedData.getLastLocation() != null)
 				SharedData.getMediaPlayer().start();
 		}
 	};
-	
+
 	private OnClickListener pauseListener = new OnClickListener() {
 		public void onClick(View arg0) {
 			if (SharedData.getMediaPlayer().isPlaying())
 				SharedData.getMediaPlayer().pause();
 		}
 	};
-	
+
 	private OnClickListener stopListener = new OnClickListener() {
 		public void onClick(View arg0) {
 			if (SharedData.getMediaPlayer().isPlaying())
 				SharedData.getMediaPlayer().stop();
 		}
 	};
-	
+
 }
