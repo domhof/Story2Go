@@ -14,6 +14,10 @@ public class SharedData {
 
 	private static MediaPlayer mediaPlayer;
 
+	public static void reset() {
+		nextLocationIndex = 0;
+	}
+
 	public static LocationAudio getNextLocation() {
 		if (nextLocationIndex >= locations.size())
 			return null;

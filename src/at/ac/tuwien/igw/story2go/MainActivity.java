@@ -217,7 +217,11 @@ public class MainActivity extends Activity implements SensorEventListener,
 
 	private OnClickListener backListener = new OnClickListener() {
 		public void onClick(View arg0) {
+			if (SharedData.getMediaPlayer().isPlaying())
+				SharedData.getMediaPlayer().stop();
 
+			SharedData.reset();
+			onBackPressed();
 		}
 	};
 
