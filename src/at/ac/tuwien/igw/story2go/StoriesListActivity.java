@@ -98,7 +98,6 @@ public class StoriesListActivity extends Activity {
 				long id) {
 			if (position > 0)
 				return;
-			Story story = stories.get(position);
 			Intent intent = new Intent(StoriesListActivity.this,
 					MainActivity.class);
 			startActivity(intent);

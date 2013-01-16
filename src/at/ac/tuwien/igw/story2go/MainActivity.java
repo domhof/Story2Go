@@ -37,13 +37,11 @@ public class MainActivity extends Activity implements SensorEventListener,
 	 * UI elements
 	 */
 	private TextView textViewDistance;
-	private TextView textViewBearing;
-	private TextView textViewCompass;
 	private TextView textViewCompassAccuracy;
-	Button buttonBack;
-	ImageButton buttonPlay;
-	ImageButton buttonPause;
-	ImageButton buttonStop;
+	private Button buttonBack;
+	private ImageButton buttonPlay;
+	private ImageButton buttonPause;
+	private ImageButton buttonStop;
 
 	/**
 	 * Activity events
@@ -82,8 +80,6 @@ public class MainActivity extends Activity implements SensorEventListener,
 
 		// Get UI elements
 		textViewDistance = (TextView) findViewById(R.id.textViewDistance);
-		textViewBearing = (TextView) findViewById(R.id.textViewBearing);
-		textViewCompass = (TextView) findViewById(R.id.textViewCompass);
 		textViewCompassAccuracy = (TextView) findViewById(R.id.textViewCompassAccuracy);
 
 		buttonBack = (Button) findViewById(R.id.buttonBack);
