@@ -55,7 +55,6 @@ public class StoriesListActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// falls wir vom Änderungsformular zurückkommen...
 		myAdapter.notifyDataSetChanged();
 	}
 

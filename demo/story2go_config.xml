@@ -9,84 +9,84 @@
 				<latitude>48.165432</latitude>
 				<longitude>16.328213</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 1.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.165695</latitude>
 				<longitude>16.327587</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 2.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.165791</latitude>
 				<longitude>16.326427</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 3.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.165062</latitude>
 				<longitude>16.324957</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 4.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.164593</latitude>
 				<longitude>16.324017</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 5.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.164059</latitude>
 				<longitude>16.323153</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 6.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.163105</latitude>
 				<longitude>16.322367</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 7.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.162704</latitude>
 				<longitude>16.321877</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 8.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.162483</latitude>
 				<longitude>16.320620</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 9.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.162220</latitude>
 				<longitude>16.320400</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 10.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.161205</latitude>
 				<longitude>16.319986</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 11.wav</filename>
 		</trigger>
 		<trigger>
 			<location>
 				<latitude>48.161556</latitude>
 				<longitude>16.317999</longitude>
 			</location>
-			<filename>bird.wav</filename>
+			<filename>Trigger 12.wav</filename>
 		</trigger>
 	</triggers>
 </story2go>
